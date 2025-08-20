@@ -1,0 +1,15 @@
+signature Death.Functor.Signature
+  ( Functor
+  , map
+  , pure
+  )
+where
+
+import Prelude (Show(..))
+
+data Functor a
+
+instance Show a => Show (Functor a)
+
+map :: (a -> b) -> Functor a -> Functor b
+pure :: a -> Functor a

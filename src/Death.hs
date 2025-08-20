@@ -3,5 +3,11 @@ module Death
   )
 where
 
+import Death.Functor
+import Prelude(($), IO, print, (<>), String)
+
+
+
 main :: IO ()
-main = putStrLn "hello, world flaky"
+main = print @(Functor String) $
+   (\x -> ("xxx" <> x)) <$> pure "blab"

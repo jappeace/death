@@ -1,4 +1,4 @@
-cabal-version:      3.0
+cabal-version:      3.4
 
 name:           death
 version:        1.0.0
@@ -58,10 +58,20 @@ common common-options
 
 library
   import: common-options
+  signatures:
+      Death.Functor.Signature
   exposed-modules:
       Death
+      Death.Functor
   other-modules:
       Paths_death
+  hs-source-dirs:
+      src
+
+library impl-maybe
+  import: common-options
+  exposed-modules:
+      Death.Functor.Maybe
   hs-source-dirs:
       src
 
@@ -71,8 +81,9 @@ executable exe
   hs-source-dirs:
       app
   build-depends:
-      death
+      death, death:impl-maybe
   ghc-options: -Wno-unused-packages
+  mixins: death:impl-maybe (Death.Functor.Maybe as Death.Functor.Signature)
 
 test-suite unit
   import: common-options
@@ -87,4 +98,7 @@ test-suite unit
       tasty,
       tasty-hunit,
       tasty-quickcheck,
-      death
+      death,
+      death:impl-maybe
+  mixins:
+      death:impl-maybe (Death.Functor.Maybe as Death.Functor.Signature)
