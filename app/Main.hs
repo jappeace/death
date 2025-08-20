@@ -1,7 +1,7 @@
 
 module Main where
 
-import qualified Template
+import qualified Death
 
 main :: IO ()
-main = Template.main
+main = Death.main
