@@ -1,9 +1,16 @@
 [![https://jappieklooster.nl](https://img.shields.io/badge/blog-jappieklooster.nl-lightgrey)](https://jappieklooster.nl/tag/haskell.html)
 [![Jappiejappie](https://img.shields.io/badge/discord-jappiejappie-black?logo=discord)](https://discord.gg/Hp4agqy)
 
-> Symbolizes significant change, transformation, and endings, rather than literal physical death.
+> Death (XIII) Symbolizes significant change, transformation, and endings, rather than literal physical death.
 
 Death to typeclasses.
+
+In here we explore an alternative universe where
+we neglect the existence of typeclasses in favor of the backpack module system.
+This ends up doing ocaml in haskell.
+It's either best of both worlds, 
+or a failed experiment.
+
 
 
 ### Tools
