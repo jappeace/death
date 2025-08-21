@@ -5,7 +5,7 @@ where
 
 import Death.Functor
 import Prelude(($), IO, print, (<>), String)
-
+import Death.Applicative
 
 
 main :: IO ()

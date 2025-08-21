@@ -1,0 +1,11 @@
+signature Death.Applicative.Signature
+  ( pure
+  , apply
+  )
+where
+
+import Death.Functor.Signature
+import Prelude()
+
+pure :: a -> Functor a
+apply :: Functor (a -> b) -> Functor a -> Functor b

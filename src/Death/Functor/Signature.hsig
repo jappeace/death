@@ -1,7 +1,6 @@
 signature Death.Functor.Signature
   ( Functor
   , map
-  , pure
   )
 where
 
@@ -12,4 +11,3 @@ data Functor a
 instance Show a => Show (Functor a)
 
 map :: (a -> b) -> Functor a -> Functor b
-pure :: a -> Functor a
