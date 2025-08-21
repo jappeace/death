@@ -61,10 +61,12 @@ library
   signatures:
       Death.Functor.Signature
       Death.Applicative.Signature
+      Death.Monad.Signature
   exposed-modules:
       Death
       Death.Functor
       Death.Applicative
+      Death.Monad
   other-modules:
       Paths_death
   hs-source-dirs:
@@ -75,6 +77,7 @@ library impl-maybe
   exposed-modules:
       Death.Functor.Maybe
       Death.Applicative.Maybe
+      Death.Monad.Maybe
   hs-source-dirs:
       src
 
@@ -88,7 +91,8 @@ executable exe
   ghc-options: -Wno-unused-packages
   mixins:
        death:impl-maybe (Death.Functor.Maybe as Death.Functor.Signature),
-       death:impl-maybe (Death.Applicative.Maybe as Death.Applicative.Signature)
+       death:impl-maybe (Death.Applicative.Maybe as Death.Applicative.Signature),
+       death:impl-maybe (Death.Monad.Maybe as Death.Monad.Signature)
 
 test-suite unit
   import: common-options
@@ -107,4 +111,5 @@ test-suite unit
       death:impl-maybe
   mixins:
       death:impl-maybe (Death.Functor.Maybe as Death.Functor.Signature),
-      death:impl-maybe (Death.Applicative.Maybe as Death.Applicative.Signature)
+      death:impl-maybe (Death.Applicative.Maybe as Death.Applicative.Signature),
+      death:impl-maybe (Death.Monad.Maybe as Death.Monad.Signature)

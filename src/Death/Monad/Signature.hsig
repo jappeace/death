@@ -1,0 +1,9 @@
+signature Death.Monad.Signature
+  ( (>=>)
+  )
+where
+
+import Death.Functor.Signature
+import Prelude()
+
+(>=>) :: (a -> Functor b) -> (b -> Functor c) -> (a -> Functor c)
