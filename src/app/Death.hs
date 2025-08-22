@@ -19,6 +19,7 @@ myList = [4, 3, 2]
 
 
 
+
 main :: IO ()
 main = print @(Functor String) $ do
    res <- (\x -> ("xxx" <> x)) <$> pure "blab"

@@ -75,8 +75,11 @@ library impl
   import: common-options
   exposed-modules:
       Death.Functor.Maybe
+      Death.Functor.List
       Death.Applicative.Maybe
+      Death.Applicative.List
       Death.Monad.Maybe
+      Death.Monad.List
   hs-source-dirs:
       src/impl
 
@@ -88,7 +91,8 @@ library app
   hs-source-dirs:
       src/app
   mixins:
-       death:impl (Death.Functor.Maybe as Death.Functor.Signature),
+       death (Death.Functor as List.Functor) requires (Death.Functor.Signature as Death.Functor.List),
+       death (Death.Functor as Maybe.Functor) requires (Death.Functor.Signature as Death.Functor.Maybe),
        death:impl (Death.Applicative.Maybe as Death.Applicative.Signature),
        death:impl (Death.Monad.Maybe as Death.Monad.Signature)
   build-depends:
@@ -102,7 +106,8 @@ executable exe
   hs-source-dirs:
       app
   build-depends:
-      death:app
+      death:app,
+      death:impl
   ghc-options: -Wno-unused-packages
 
 test-suite unit
@@ -118,4 +123,5 @@ test-suite unit
       tasty,
       tasty-hunit,
       tasty-quickcheck,
-      death:app
+      death:app,
+      death:impl

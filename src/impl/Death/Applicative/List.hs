@@ -4,11 +4,11 @@ module Death.Applicative.List
   )
 where
 
-import Prelude(Maybe(..), ($))
+import Prelude(Maybe(..), ($), (<>))
 import Death.Functor.List
 
 
-pure :: a -> Functor
+pure :: a -> Functor a
 pure x = [x]
 
 apply :: Functor (a -> b) -> Functor a -> Functor b
