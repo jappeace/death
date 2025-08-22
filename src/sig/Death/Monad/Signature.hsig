@@ -1,9 +1,9 @@
 signature Death.Monad.Signature
-  ( (>=>)
+  ( bind
   )
 where
 
 import Death.Functor.Signature
 import Prelude()
 
-(>=>) :: (a -> Functor b) -> (b -> Functor c) -> (a -> Functor c)
+bind :: Functor a -> (a -> Functor b) -> Functor b

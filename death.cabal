@@ -43,7 +43,7 @@ common common-options
       ImportQualifiedPost
 
   ghc-options:
-    -O2 -Wall -Werror -Wincomplete-uni-patterns
+    -O2 -Wall -Wincomplete-uni-patterns
     -Wincomplete-record-updates -Widentities -Wredundant-constraints
     -Wcpp-undef -fwarn-tabs -Wpartial-fields
     -fdefer-diagnostics -Wunused-packages
@@ -63,23 +63,38 @@ library
       Death.Applicative.Signature
       Death.Monad.Signature
   exposed-modules:
-      Death
       Death.Functor
       Death.Applicative
       Death.Monad
   other-modules:
       Paths_death
   hs-source-dirs:
-      src
+      src/sig
 
-library impl-maybe
+library impl
   import: common-options
   exposed-modules:
       Death.Functor.Maybe
       Death.Applicative.Maybe
       Death.Monad.Maybe
   hs-source-dirs:
-      src
+      src/impl
+
+-- library is an exe pattern
+library app
+  import: common-options
+  exposed-modules:
+      Death
+  hs-source-dirs:
+      src/app
+  mixins:
+       death:impl (Death.Functor.Maybe as Death.Functor.Signature),
+       death:impl (Death.Applicative.Maybe as Death.Applicative.Signature),
+       death:impl (Death.Monad.Maybe as Death.Monad.Signature)
+  build-depends:
+      death:impl,
+      death,
+      base
 
 executable exe
   import: common-options
@@ -87,12 +102,8 @@ executable exe
   hs-source-dirs:
       app
   build-depends:
-      death, death:impl-maybe
+      death:app
   ghc-options: -Wno-unused-packages
-  mixins:
-       death:impl-maybe (Death.Functor.Maybe as Death.Functor.Signature),
-       death:impl-maybe (Death.Applicative.Maybe as Death.Applicative.Signature),
-       death:impl-maybe (Death.Monad.Maybe as Death.Monad.Signature)
 
 test-suite unit
   import: common-options
@@ -107,9 +118,4 @@ test-suite unit
       tasty,
       tasty-hunit,
       tasty-quickcheck,
-      death,
-      death:impl-maybe
-  mixins:
-      death:impl-maybe (Death.Functor.Maybe as Death.Functor.Signature),
-      death:impl-maybe (Death.Applicative.Maybe as Death.Applicative.Signature),
-      death:impl-maybe (Death.Monad.Maybe as Death.Monad.Signature)
+      death:app
