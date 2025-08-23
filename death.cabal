@@ -91,10 +91,9 @@ library app
   hs-source-dirs:
       src/app
   mixins:
-       death (Death.Functor as List.Functor) requires (Death.Functor.Signature as Death.Functor.List),
        death (Death.Functor as Maybe.Functor) requires (Death.Functor.Signature as Death.Functor.Maybe),
-       death:impl (Death.Applicative.Maybe as Death.Applicative.Signature),
-       death:impl (Death.Monad.Maybe as Death.Monad.Signature)
+       death (Death.Applicative as Maybe.Applicative) requires (Death.Applicative.Signature as Death.Applicative.Maybe),
+       death (Death.Monad as Maybe.Monad) requires (Death.Monad.Signature as Death.Monad.Maybe)
   build-depends:
       death:impl,
       death,
