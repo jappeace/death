@@ -5,11 +5,12 @@ module Death
   )
 where
 
-import Death.Functor
+import Maybe.Functor
 import Prelude(($), IO, print, (<>), String, Maybe(..), fromInteger, Int, show, (+))
-import Death.Applicative
-import Death.Monad
+import Maybe.Applicative
+import Maybe.Monad
 import Data.String(fromString)
+import qualified List.Functor as LF
 
 myMaybe :: Maybe String
 myMaybe = Just "zs"
@@ -24,4 +25,4 @@ main :: IO ()
 main = print @(Functor String) $ do
    res <- (\x -> ("xxx" <> x)) <$> pure "blab"
    otherRes <- myMaybe
-   pure $ res <> "  aaa a" <> otherRes <> show ((+1) <$> myList)
+   pure $ res <> "  aaa a" <> otherRes <> show ((+1) LF.<$> myList)

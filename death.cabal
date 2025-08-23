@@ -91,9 +91,13 @@ library app
   hs-source-dirs:
       src/app
   mixins:
-       death (Death.Functor as Maybe.Functor) requires (Death.Functor.Signature as Death.Functor.Maybe),
-       death (Death.Applicative as Maybe.Applicative) requires (Death.Applicative.Signature as Death.Applicative.Maybe),
-       death (Death.Monad as Maybe.Monad) requires (Death.Monad.Signature as Death.Monad.Maybe)
+       death (Death.Monad as Maybe.Monad) requires (Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
+       death (Death.Applicative as Maybe.Applicative) requires (Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
+       death (Death.Functor as Maybe.Functor) requires (Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
+
+       death (Death.Monad as List.Monad) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
+       death (Death.Applicative  as List.Applicative) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
+       death (Death.Functor as List.Functor) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
   build-depends:
       death:impl,
       death,
@@ -105,8 +109,7 @@ executable exe
   hs-source-dirs:
       app
   build-depends:
-      death:app,
-      death:impl
+      death:app
   ghc-options: -Wno-unused-packages
 
 test-suite unit
@@ -122,5 +125,4 @@ test-suite unit
       tasty,
       tasty-hunit,
       tasty-quickcheck,
-      death:app,
-      death:impl
+      death:app
