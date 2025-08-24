@@ -78,12 +78,17 @@ library impl
   exposed-modules:
       Death.Functor.Maybe
       Death.Functor.List
+      Death.Functor.IO
       Death.Applicative.Maybe
       Death.Applicative.List
+      Death.Applicative.IO
       Death.Monad.Maybe
       Death.Monad.List
+      Death.Monad.IO
   hs-source-dirs:
       src/impl
+  build-depends:
+    ghc-prim
 
 -- library is an exe pattern
 library app
