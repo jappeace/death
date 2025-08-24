@@ -62,6 +62,8 @@ library
       Death.Functor.Signature
       Death.Applicative.Signature
       Death.Monad.Signature
+      Death.Effect.FileSystem
+      Death.Effect.LineInOut
   exposed-modules:
       Death.Functor
       Death.Applicative

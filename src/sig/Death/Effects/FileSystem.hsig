@@ -1,0 +1,12 @@
+-- | effect system example
+module Death.Effect.FileSystem
+  ( FileSystemM
+  , readFile
+  , writeFile
+  )
+where
+
+data FileSystemM a
+
+readFile  :: FilePath -> FileSystemM String
+writeFile :: FilePath -> String -> FileSystemM ()

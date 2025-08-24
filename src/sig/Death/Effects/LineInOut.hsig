@@ -1,0 +1,12 @@
+-- | effect system example
+module Death.Effect.LineInOut
+  ( InOutM
+  , readLine
+  , writeLine
+  )
+where
+
+data InOutM a
+
+readLine :: FileSystemM String
+writeLine :: String -> FileSystemM ()
