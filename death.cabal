@@ -49,7 +49,7 @@ common common-options
     -fdefer-diagnostics -Wunused-packages
     -fenable-th-splice-warnings
     -fno-omit-yields
-    -threaded 
+    -threaded  -ddump-if-trace
 
   build-depends:
       base >=4.9.1.0 && <4.21.0
@@ -120,7 +120,10 @@ library impl
   hs-source-dirs:
       src/impl
   build-depends:
-    ghc-prim
+    ghc-prim,
+    death:effects,
+    death:effects-io
+
 
 -- library is an exe pattern
 library app

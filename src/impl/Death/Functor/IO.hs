@@ -9,8 +9,7 @@ where
 
 import Prelude (($))
 import GHC.Types(IO(..))
-
-type Functor = IO
+import Death.Base(Functor)
 
 map :: (a -> b) -> Functor a -> Functor b
 map fab = \case
