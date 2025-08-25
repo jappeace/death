@@ -1,0 +1,8 @@
+-- | defines the base effect type
+signature Death.Effects.Base
+  (
+  Eff
+  )
+where
+
+data Eff a

@@ -4,7 +4,7 @@ module Death.Functor.List
   )
 where
 
-import Prelude(Maybe(..), ($))
+import Prelude()
 
 type Functor = []
 

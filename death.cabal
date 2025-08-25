@@ -49,7 +49,7 @@ common common-options
     -fdefer-diagnostics -Wunused-packages
     -fenable-th-splice-warnings
     -fno-omit-yields
-    -threaded -rtsopts "-with-rtsopts=-N -M7G -T -Iw10"
+    -threaded 
 
   build-depends:
       base >=4.9.1.0 && <4.21.0
@@ -59,20 +59,51 @@ common common-options
 library
   import: common-options
   signatures:
+      Death.Base
       Death.Functor.Signature
       Death.Applicative.Signature
       Death.Monad.Signature
-      Death.Effects.FileSystem
-      Death.Effects.LineInOut
   exposed-modules:
       Death.Functor
       Death.Applicative
       Death.Monad
-      Death.BusinessLogic
   other-modules:
       Paths_death
   hs-source-dirs:
       src/sig
+
+library effects
+  import: common-options
+  signatures:
+      Death.Effects.Base
+      Death.Effects.FileSystem
+      Death.Effects.LineInOut
+  exposed-modules:
+      Death.Base
+  hs-source-dirs:
+      src/effects
+
+library effects-app
+  import: common-options
+  exposed-modules:
+      Death.BusinessLogic
+  hs-source-dirs:
+      src/effects-app
+  build-depends:
+    ghc-prim,
+    death:effects,
+    death
+
+library effects-io
+  import: common-options
+  exposed-modules:
+      Death.Effects.Base
+      Death.Effects.FileSystem
+      Death.Effects.LineInOut
+  hs-source-dirs:
+      src/effects-io
+  build-depends:
+    ghc-prim
 
 library impl
   import: common-options
@@ -86,8 +117,6 @@ library impl
       Death.Monad.Maybe
       Death.Monad.List
       Death.Monad.IO
-      Death.Effects.LineInOut
-      Death.Effects.FileSystem
   hs-source-dirs:
       src/impl
   build-depends:
@@ -101,16 +130,24 @@ library app
   hs-source-dirs:
       src/app
   mixins:
-       death (Death.Monad as Maybe.Monad) requires (Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
-       death (Death.Applicative as Maybe.Applicative) requires (Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
-       death (Death.Functor as Maybe.Functor) requires (Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
+      
+       death (Death.Monad as Maybe.Monad) requires (Death.Base as Death.Functor.Maybe, Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
+       death (Death.Applicative as Maybe.Applicative) requires (Death.Base as Death.Functor.Maybe, Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
+       death (Death.Functor as Maybe.Functor) requires (Death.Base as Death.Functor.Maybe, Death.Monad.Signature as Death.Monad.Maybe, Death.Applicative.Signature as Death.Applicative.Maybe, Death.Functor.Signature as Death.Functor.Maybe),
 
-       death (Death.Monad as List.Monad) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
-       death (Death.Applicative  as List.Applicative) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
-       death (Death.Functor as List.Functor) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
+       death (Death.Monad as List.Monad) requires (Death.Base as Death.Functor.List, Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
+       death (Death.Applicative  as List.Applicative) requires (Death.Base as Death.Functor.List, Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
+       death (Death.Functor as List.Functor) requires (Death.Base as Death.Functor.List, Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
 
+       death (Death.Monad as IO.Monad) requires (Death.Base as Death.Functor.IO, Death.Monad.Signature as Death.Monad.IO, Death.Applicative.Signature as Death.Applicative.IO, Death.Functor.Signature as Death.Functor.IO),
+       death (Death.Applicative  as IO.Applicative) requires (Death.Base as Death.Functor.IO, Death.Monad.Signature as Death.Monad.IO, Death.Applicative.Signature as Death.Applicative.IO, Death.Functor.Signature as Death.Functor.IO),
+       death (Death.Functor as IO.Functor) requires (Death.Base as Death.Functor.IO, Death.Monad.Signature as Death.Monad.IO, Death.Applicative.Signature as Death.Applicative.IO, Death.Functor.Signature as Death.Functor.IO),
+
+        death:effects-app requires (Death.Monad.Signature as Death.Monad.IO, Death.Applicative.Signature as Death.Applicative.IO, Death.Functor.Signature as Death.Functor.IO)
   build-depends:
       death:impl,
+      death:effects-io,
+      death:effects-app,
       death,
       base
 

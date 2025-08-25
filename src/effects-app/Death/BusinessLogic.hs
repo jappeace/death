@@ -1,3 +1,4 @@
+{-# LANGUAGE RebindableSyntax #-}
 
 -- | Business logic formally is an extension of hoare logic,
 --   where deduction is neglected and only axioms are introduced.
@@ -5,27 +6,22 @@
 --  in here we just write some make believe commercial code so
 --  we can play with backpack as  an effect system.
 module Death.BusinessLogic
-  ( main
+  ( business
   )
 where
 
-import Death.Effects.LineInOut(writeLine, InOutM, readLine)
-import Death.Effects.FileSystem( FileSystemM
-  , readFile
+import Death.Effects.LineInOut(writeLine, readLine)
+import Death.Effects.FileSystem(
+    readFile
   , writeFile
   )
 import Death.Monad
-import Death.Functor
+import Death.Effects.Base
 import Prelude()
+import Data.String(fromString)
 
--- unify everything, doesn't have to be functor but we need
--- to pick one of the signatures
-type AppM = Functor
-type FileSystemM = Functor
-type InOutM = Functor
-
-main :: AppM ()
-main = do
+business :: Eff ()
+business = do
   writeLine "file name:"
   fileName <- readLine
   writeLine "file content:"

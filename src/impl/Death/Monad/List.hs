@@ -3,7 +3,7 @@ module Death.Monad.List
   )
 where
 
-import Prelude(Maybe(..), ($), (<>))
+import Prelude((<>))
 import Death.Functor.List
 
 bind :: Functor a -> (a -> Functor b) -> Functor b

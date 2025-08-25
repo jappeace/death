@@ -1,0 +1,11 @@
+-- | effect system example
+signature Death.Effects.LineInOut
+  ( readLine
+  , writeLine
+  )
+where
+
+import Death.Effects.Base
+
+readLine :: Eff String
+writeLine :: String -> Eff ()

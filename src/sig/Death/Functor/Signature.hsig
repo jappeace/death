@@ -4,10 +4,7 @@ signature Death.Functor.Signature
   )
 where
 
-import Prelude (Show(..))
-
-data Functor a
-
-instance Show a => Show (Functor a)
+import Prelude ()
+import Death.Base
 
 map :: (a -> b) -> Functor a -> Functor b

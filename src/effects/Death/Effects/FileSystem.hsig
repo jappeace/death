@@ -1,0 +1,12 @@
+-- | effect system example
+signature Death.Effects.FileSystem
+  ( readFile
+  , writeFile
+  )
+where
+
+import Prelude(String, FilePath)
+import Death.Effects.Base
+
+readFile  :: FilePath -> Eff String
+writeFile :: FilePath -> String -> Eff ()

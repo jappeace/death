@@ -1,4 +1,6 @@
 {-# LANGUAGE UnboxedTuples #-}
+{-# LANGUAGE BangPatterns #-}
+
 module Death.Functor.IO
   ( Functor
   , map
@@ -13,5 +15,5 @@ type Functor = IO
 map :: (a -> b) -> Functor a -> Functor b
 map fab = \case
   IO frw -> IO $ \rw -> let
-          (# st, a #) = (frw rw)
+          !(# st, a #) = (frw rw)
         in (# st, fab a #)

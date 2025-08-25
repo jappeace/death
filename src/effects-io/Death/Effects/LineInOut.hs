@@ -1,17 +1,14 @@
 -- | effect system example
-module Death.Effect.LineInOut
-  ( InOutM
-  , readLine
+module Death.Effects.LineInOut
+  ( readLine
   , writeLine
   )
 where
 
 import Prelude(IO, String, getLine, putStrLn)
 
-type InOutM = IO
-
-readLine :: InOutM String
+readLine :: IO String
 readLine = getLine
 
-writeLine :: String -> InOutM ()
+writeLine :: String -> IO ()
 writeLine = putStrLn

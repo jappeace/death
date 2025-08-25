@@ -1,4 +1,5 @@
 {-# LANGUAGE UnboxedTuples #-}
+{-# LANGUAGE BangPatterns #-}
 
 module Death.Monad.IO
   (
@@ -12,6 +13,6 @@ import Prelude (($))
 
 bind :: Functor a -> (a -> Functor b) -> Functor b
 bind (IO rwa) aiob = IO $ \rw ->  let
-    (# rw2, a #) = rwa rw
+    !(# rw2, a #) = rwa rw
     in case aiob a of
          IO rwb -> rwb rw2

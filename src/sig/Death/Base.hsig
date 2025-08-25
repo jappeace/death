@@ -1,0 +1,12 @@
+-- root of typeclass hierarchy
+--
+-- sepearting this out from functor allows us to assign equality
+-- to other roots, such as Eff, without having to worry about map.
+signature Death.Base
+  (Functor
+  )
+where
+
+import Prelude ()
+
+data Functor a
