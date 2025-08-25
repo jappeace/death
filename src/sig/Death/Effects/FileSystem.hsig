@@ -1,11 +1,12 @@
 -- | effect system example
-module Death.Effect.FileSystem
+signature Death.Effects.FileSystem
   ( FileSystemM
   , readFile
   , writeFile
   )
 where
 
+import Prelude(String, FilePath)
 data FileSystemM a
 
 readFile  :: FilePath -> FileSystemM String

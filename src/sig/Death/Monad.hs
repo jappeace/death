@@ -6,7 +6,7 @@ module Death.Monad
 where
 
 import Death.Monad.Signature as X
-import Death.Functor
+import Death.Functor(Functor)
 import Prelude ()
 
 (>=>) :: (a -> Functor b) -> (b -> Functor c) -> (a -> Functor c)

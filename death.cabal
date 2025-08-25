@@ -62,12 +62,13 @@ library
       Death.Functor.Signature
       Death.Applicative.Signature
       Death.Monad.Signature
-      Death.Effect.FileSystem
-      Death.Effect.LineInOut
+      Death.Effects.FileSystem
+      Death.Effects.LineInOut
   exposed-modules:
       Death.Functor
       Death.Applicative
       Death.Monad
+      Death.BusinessLogic
   other-modules:
       Paths_death
   hs-source-dirs:
@@ -85,6 +86,8 @@ library impl
       Death.Monad.Maybe
       Death.Monad.List
       Death.Monad.IO
+      Death.Effects.LineInOut
+      Death.Effects.FileSystem
   hs-source-dirs:
       src/impl
   build-depends:
@@ -105,6 +108,7 @@ library app
        death (Death.Monad as List.Monad) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
        death (Death.Applicative  as List.Applicative) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
        death (Death.Functor as List.Functor) requires (Death.Monad.Signature as Death.Monad.List, Death.Applicative.Signature as Death.Applicative.List, Death.Functor.Signature as Death.Functor.List),
+
   build-depends:
       death:impl,
       death,

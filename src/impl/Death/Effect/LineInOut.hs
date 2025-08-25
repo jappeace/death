@@ -1,12 +1,17 @@
 -- | effect system example
-signature Death.Effects.LineInOut
+module Death.Effect.LineInOut
   ( InOutM
   , readLine
   , writeLine
   )
 where
 
-data InOutM a
+import Prelude(IO, String, getLine, putStrLn)
+
+type InOutM = IO
 
 readLine :: InOutM String
+readLine = getLine
+
 writeLine :: String -> InOutM ()
+writeLine = putStrLn
