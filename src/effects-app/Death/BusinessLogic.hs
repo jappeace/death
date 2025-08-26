@@ -16,11 +16,11 @@ import Death.Effects.FileSystem(
   , writeFile
   )
 import Death.Monad
-import Death.Effects.Base
+import Death.Functor
 import Prelude()
 import Data.String(fromString)
 
-business :: Eff ()
+business :: Functor ()
 business = do
   writeLine "file name:"
   fileName <- readLine

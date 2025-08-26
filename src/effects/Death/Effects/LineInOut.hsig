@@ -5,7 +5,8 @@ signature Death.Effects.LineInOut
   )
 where
 
-import Death.Effects.Base
+import Prelude(String)
+import Death.Functor.Signature
 
-readLine :: Eff String
-writeLine :: String -> Eff ()
+readLine :: Functor String
+writeLine :: String -> Functor ()

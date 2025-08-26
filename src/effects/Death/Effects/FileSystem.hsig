@@ -6,7 +6,7 @@ signature Death.Effects.FileSystem
 where
 
 import Prelude(String, FilePath)
-import Death.Effects.Base
+import Death.Functor.Signature
 
-readFile  :: FilePath -> Eff String
-writeFile :: FilePath -> String -> Eff ()
+readFile  :: FilePath -> Functor String
+writeFile :: FilePath -> String -> Functor ()

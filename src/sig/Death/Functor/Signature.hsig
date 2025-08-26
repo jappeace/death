@@ -1,3 +1,4 @@
+-- | this s a functor. this is also a functor.
 signature Death.Functor.Signature
   ( Functor
   , map
@@ -5,6 +6,7 @@ signature Death.Functor.Signature
 where
 
 import Prelude ()
-import Death.Base
+
+data Functor a
 
 map :: (a -> b) -> Functor a -> Functor b
