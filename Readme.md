@@ -11,8 +11,11 @@ This ends up doing ocaml in haskell.
 It's either best of both worlds, 
 or a failed experiment.
 
+🐫🐫🐫
+
 ![Death tarrot card](./death-2.jpg)
 
+💀💀💀
 
 Actually it worked! ✨
 
