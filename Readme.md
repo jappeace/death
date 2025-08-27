@@ -5,13 +5,14 @@
 
 Death to typeclasses.
 
-![Death tarrot card](./death-2.jpg)
-
 In here we explore an alternative universe where
 we neglect the existence of typeclasses in favor of the backpack module system.
 This ends up doing ocaml in haskell.
 It's either best of both worlds, 
 or a failed experiment.
+
+![Death tarrot card](./death-2.jpg)
+
 
 Actually it worked! ✨
 
