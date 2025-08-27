@@ -1,4 +1,4 @@
--- | this s a functor. this is also a functor.
+-- | this s a functor😼. this is also a functor🐫.
 signature Death.Functor.Signature
   ( Functor
   , map
