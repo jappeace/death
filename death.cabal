@@ -102,6 +102,21 @@ library effects-io
   build-depends:
     ghc-prim
 
+library effects-state
+  import: common-options
+  exposed-modules:
+      Death.Effects.FileSystem
+      Death.Effects.LineInOut
+      Death.Functor.Signature
+      Death.Applicative.Signature
+      Death.Monad.Signature
+      Death.Functor.State
+  hs-source-dirs:
+      src/effects-state
+  build-depends:
+    ghc-prim,
+    containers
+
 library impl
   import: common-options
   exposed-modules:
@@ -173,4 +188,7 @@ test-suite unit
       tasty,
       tasty-hunit,
       tasty-quickcheck,
-      death:app
+      death:effects-app,
+      death:effects-state,
+      containers
+

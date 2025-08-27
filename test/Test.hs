@@ -3,38 +3,32 @@ module Main where
 import Test.Tasty
 import Test.Tasty.QuickCheck as QC
 import Test.Tasty.HUnit
+import Death.Functor.State
+import qualified Data.Map as Map
+import Death.Functor.Signature
 
 import Data.List(sort)
-import qualified Death
+import qualified Death.BusinessLogic as Death
 
 main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Tests" [qcProps, unitTests]
-
-qcProps :: TestTree
-qcProps = testGroup "(checked by QuickCheck)"
-  [ QC.testProperty "sort == sort . reverse" $
-      \list -> sort (list :: [Int]) == sort (reverse list)
-  , QC.testProperty "Fermat's little theorem" $
-      \x -> ((x :: Integer)^zeven  - x) `mod` zeven == 0
-  ]
-  where
-    zeven :: Integer
-    zeven = 7
-
-oneTwoThree :: [Int]
-oneTwoThree = [1, 2, 3]
+tests = testGroup "Tests" [unitTests]
 
 unitTests :: TestTree
 unitTests = testGroup "Unit tests"
-  [ testCase "List comparison (different length)" $
-       oneTwoThree `compare` [1,2] @?= GT
+  [
+    testCase "run business logic main" $ do
+      let (result, ()) = unFunctor Death.business $ State {
+        lineInput = "awesemeFile",
+        linesOutput = [],
+        fileSystem = mempty
+        }
+      result @?= State {
+        lineInput = "awesemeFile",
+        linesOutput = ["awesemeFile","reading it again to make sure its iso 42038 compliant","writing file...","file content:","file name:"],
+        fileSystem = Map.fromList[("awesemeFile", "awesemeFile")]
+        }
 
-  -- the following test does not hold
-  , testCase "List comparison (same length)" $
-      oneTwoThree `compare` [1,2,3] @?= EQ
-  , testCase "run main" $ do
-      Death.main
   ]
