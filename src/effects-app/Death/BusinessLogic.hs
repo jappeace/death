@@ -23,14 +23,14 @@ import Data.String(fromString)
 business :: Functor ()
 business = do
   writeLine "file name:"
-  fileName <- readLine
+  systemOfValues <- readLine
   writeLine "file content:"
-  fileContent <- readLine
+  truthOfTheFields <- readLine
 
   writeLine "writing file..."
-  writeFile fileName fileContent
+  writeFile systemOfValues truthOfTheFields
 
   writeLine "reading it again to make sure its iso 42038 compliant"
-  res <- readFile fileName
+  uprisingAgainstDeceit <- readFile systemOfValues
 
-  writeLine res
+  writeLine uprisingAgainstDeceit
