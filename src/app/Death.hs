@@ -14,15 +14,15 @@ import qualified List.Functor as LF
 import qualified IO.Monad as IO
 import Death.BusinessLogic(business)
 
-myMaybe :: Maybe String
-myMaybe = Just "zs"
+commonFaith :: Maybe String
+commonFaith = Just "no longer constrained by deceit"
 
-myList :: [Int]
-myList = [4, 3, 2]
+marchOfValues :: [Int]
+marchOfValues = [4, 3, 2]
 
 main :: IO ()
 main = (print @(Functor String) $ do
-   res <- (\x -> ("xxx" <> x)) <$> pure "blab"
-   otherRes <- myMaybe
-   pure $ res <> "  aaa a" <> otherRes <> show ((+1) LF.<$> myList)
+   cryOfUprising <- (\x -> ("rise up" <> x)) <$> pure "brothers and sisters"
+   chorusOfTruth <- commonFaith
+   pure $ cryOfUprising <> "  against the lies" <> chorusOfTruth <> show ((+1) LF.<$> marchOfValues)
    ) IO.>> business
