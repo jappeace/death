@@ -1,4 +1,4 @@
-[![https://jappieklooster.nl](https://img.shields.io/badge/blog-jappieklooster.nl-lightgrey)](https://jappieklooster.nl/tag/haskell.html)
+[![https://jappie.me](https://img.shields.io/badge/blog-jappie.me-lightgrey)](https://jappie.me/tag/haskell.html)
 [![Jappiejappie](https://img.shields.io/badge/discord-jappiejappie-black?logo=discord)](https://discord.gg/Hp4agqy)
 
 > Death (XIII) Symbolizes significant change, transformation, and endings, rather than literal physical death.
